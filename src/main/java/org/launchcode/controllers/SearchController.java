@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.launchcode.models.JobData.findByColumnAndValue;
+
 /**
  * Created by LaunchCode
  */
@@ -22,6 +24,19 @@ public class SearchController {
         return "search";
     }
 
-    // TODO #1 - Create handler to process search request and display results
+    // TODOcheck #1 - Create handler to process search request and display results
+    @RequestMapping(value = "results")
+    public String search(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
 
+        ArrayList<HashMap<String, String>> searchResults;
+
+        if (searchType.equals("all")) {
+            searchResults = JobData.findByValue(searchTerm);
+        } else {
+            searchResults = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
+        model.addAttribute("columns", ListController.columnChoices);
+        model.addAttribute("searchResults", searchResults);
+        return "search";
+    }
 }
