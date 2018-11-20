@@ -12,9 +12,9 @@
 
     <!-- TODO #3 - Use the same list display from search.html -->
     <table th:each="job : ${jobs}" th:class="job-listing">
-        <tr th:each="jobPost : ${job}">
-            <th><strong th:text="${jobPost.key}">Title</strong></th>
-            <td th:text="${jobPost.value}">Value</td>
+        <tr th:each="field : ${job}">
+            <th><strong th:text="${field.key}"></strong></th>
+            <td th:text="${field.value}"></td>
         </tr>
     </table>
 </div>

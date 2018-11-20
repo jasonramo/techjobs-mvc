@@ -38,9 +38,9 @@
 
     <!-- TODOcheck #2 - Loop over jobs map to display all job fields -->
     <table th:each="job : ${searchResults}" th:class="job-listing">
-        <tr th:each="jobPost : ${job}">
-            <th><strong th:text="${jobPost.key}"></strong>Title</th>
-            <td th:text="${jobPost.value}">Value</td>
+        <tr th:each="field : ${job}">
+            <th><strong th:text="${#strings.capitalizeWords(field.key)}"></strong></th>
+            <td th:text="${field.value}"></td>
         </tr>
     </table>
 </div>
